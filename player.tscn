@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://ceq63xnq61set"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_fymjr"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_uidkc"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b26hn"]
+
+[node name="player" type="CharacterBody3D"]
+collision_layer = 2
+script = ExtResource("1_fymjr")
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_uidkc")
+
+[node name="collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_b26hn")
+
+[node name="navigation_agent" type="NavigationAgent3D" parent="."]
+target_desired_distance = 0.1

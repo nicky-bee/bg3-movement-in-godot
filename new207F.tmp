@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://duj6hqcmry3w4"]
+
+[ext_resource type="Script" path="res://gravity.gd" id="1_fno66"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xgd3o"]
+radius = 0.114227
+
+[node name="ground_point" type="CharacterBody3D"]
+script = ExtResource("1_fno66")
+
+[node name="collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.122129, 0)
+shape = SubResource("SphereShape3D_xgd3o")
+
+[node name="player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 5)
+
+[node name="camera" type="Camera3D" parent="player"]
+
+[node name="collision" type="CollisionShape3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.122129, 0)
+shape = SubResource("SphereShape3D_xgd3o")
