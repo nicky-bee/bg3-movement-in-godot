@@ -8,6 +8,7 @@ var marker
 var inventory_open: bool = false
 var target_pickup = null
 var on_inventory_ui = false
+var pending_drop = null 
 
 @export var inventory_data: InventoryData
 
@@ -27,17 +28,21 @@ func _input(event):
 		if lmb_pressed:
 			var intersect = get_mouse_intersect(event.position)
 			
-			if inventory_interface.grabbed_slot_data and !on_inventory_ui:
-				var placed_item = load(inventory_interface.grabbed_slot_data.item_location)
-				var instance = placed_item.instantiate()
-				world.add_child(instance)
-				instance.global_position = intersect.position
+			# Check if player is trying to drop an item
+			if inventory_interface.grabbed_slot_data and !on_inventory_ui and intersect:
+				# Store drop details and move player to the location first
+				pending_drop = {
+					"item_data": inventory_interface.grabbed_slot_data,
+					"position": intersect.position
+				}
+				navigation_agent.set_target_position(intersect.position)
 				
+				# Reset last grabbed index to prevent repeated drops
 				if inventory_interface.last_grabbed_index != -1:
-					inventory_data.drop_slot_data(inventory_interface.grabbed_slot_data, inventory_interface.last_grabbed_index, get_on_inventory_ui())
-					inventory_interface.last_grabbed_index = -1  # Reset after dropping
+					inventory_interface.last_grabbed_index = -1
 		
-			if intersect && !inventory_interface.grabbed_slot_data:
+			# Normal movement and pickup handling if no item is being dropped
+			elif intersect and !inventory_interface.grabbed_slot_data:
 				if intersect.collider.is_in_group("pickup"):
 					handle_pickup_attempt(intersect.collider)
 				else:
@@ -51,6 +56,7 @@ func _input(event):
 func _physics_process(delta):
 	handle_movement()
 	handle_proximity_pickup()
+	handle_pending_drop()
 
 func handle_movement():
 	if navigation_agent.is_target_reached() or navigation_agent.distance_to_target() < 0.01:
@@ -66,6 +72,54 @@ func handle_proximity_pickup():
 	if target_pickup and target_pickup in pickup_radius.get_overlapping_bodies():
 			pickup_item(target_pickup)
 			navigation_agent.target_position = global_position
+
+func handle_pending_drop():
+	if pending_drop:
+		var drop_position = pending_drop["position"]
+		
+		# Get the actual radius from the CollisionShape3D inside the pickup_radius
+		var collision_shape = pickup_radius.get_child(0) as CollisionShape3D
+		if collision_shape and collision_shape.shape is SphereShape3D:
+			var radius = collision_shape.shape.radius
+
+			# Stop the player as soon as they reach the radius
+			if global_position.distance_to(drop_position) <= radius:
+				navigation_agent.target_position = global_position  # Stop movement
+
+				var placed_item = load(pending_drop["item_data"].item_location)
+				var instance = placed_item.instantiate()
+				world.add_child(instance)
+				instance.global_position = global_position  # Start at the player
+
+				# Animate the item moving in an arc
+				animate_drop(instance, drop_position)
+
+				# Remove item from inventory
+				inventory_data.drop_slot_data(pending_drop["item_data"], -1, get_on_inventory_ui())
+
+				# Clear pending drop
+				pending_drop = null
+
+func animate_drop(item, target_position):
+	var tween = get_tree().create_tween()
+	var start_pos = item.global_position
+	var duration = 0.6
+
+	tween.tween_method(
+		func(value):
+			if is_instance_valid(item):
+				var t = (value - start_pos).length() / (target_position - start_pos).length()
+				var arc_height = sin(t * PI) * 1.5
+				item.global_position = value.lerp(target_position, t) + Vector3(0, arc_height, 0),
+		start_pos,
+		target_position,
+		duration
+	)
+
+	tween.tween_callback(func():
+		if is_instance_valid(item):
+			item.global_position = target_position
+	)
 
 func get_mouse_intersect(mouse_position):
 	if !inventory_open || inventory_interface.grabbed_slot_data:

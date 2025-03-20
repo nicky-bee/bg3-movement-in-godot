@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://player/scripts/inventory_interface.gd" id="1_xn0v1"]
 [ext_resource type="Script" path="res://player/scripts/inventory_window.gd" id="2_a6y6k"]
 [ext_resource type="PackedScene" uid="uid://cmc8qks4ivauj" path="res://player/scenes/inventory.tscn" id="2_caxy4"]
-[ext_resource type="PackedScene" uid="uid://blpwxkpiprefq" path="res://player/scenes/slot.tscn" id="3_k0vnb"]
+[ext_resource type="PackedScene" uid="uid://cli3ac1ct7m0m" path="res://player/scenes/mouse_slot.tscn" id="4_xljko"]
 
 [node name="inventory_window" type="Control"]
 layout_mode = 3
@@ -17,7 +17,7 @@ script = ExtResource("1_xn0v1")
 
 [node name="window" type="Window" parent="."]
 title = "Inventory"
-initial_position = 1
+position = Vector2i(1011, 169)
 visible = false
 extend_to_title = true
 script = ExtResource("2_a6y6k")
@@ -32,10 +32,7 @@ offset_right = 0.0
 offset_bottom = 1.0
 grow_horizontal = 0
 
-[node name="grabbed_slot" parent="." instance=ExtResource("3_k0vnb")]
-top_level = true
-layout_mode = 0
-anchors_preset = 0
+[node name="grabbed_slot" parent="." instance=ExtResource("4_xljko")]
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="close_requested" from="window" to="." method="_on_window_close_requested"]

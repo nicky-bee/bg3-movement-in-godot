@@ -6,7 +6,7 @@ var grabbed_slot_data: SlotData
 
 @onready var player: CharacterBody3D = $"../.."
 @onready var player_inventory: PanelContainer = $window/inventory
-@onready var grabbed_slot: PanelContainer = $grabbed_slot
+@onready var grabbed_slot: Window = $grabbed_slot
 @onready var window: Window = $window
 
 @export var drag_margin: int = 10  # How much of the top is draggable
@@ -17,7 +17,7 @@ var last_grabbed_index: int = -1
 
 func _physics_process(delta):
 	if grabbed_slot.visible:
-		grabbed_slot.global_position = get_global_mouse_position() + Vector2(5, 5)
+		grabbed_slot.position = get_global_mouse_position() + Vector2(5, 5)
 
 func set_player_inventory_data(inventory_data: InventoryData) -> void:
 	inventory_data.inventory_interact.connect(on_inventory_interact)
