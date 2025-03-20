@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://chatjkb4iv1en"]
+[gd_scene load_steps=10 format=3 uid="uid://chatjkb4iv1en"]
 
-[ext_resource type="PackedScene" uid="uid://ceq63xnq61set" path="res://player.tscn" id="1_ai58r"]
-[ext_resource type="PackedScene" uid="uid://duj6hqcmry3w4" path="res://player_camera.tscn" id="2_6s660"]
-[ext_resource type="PackedScene" uid="uid://b5x6qq5bmpk5w" path="res://marker.tscn" id="4_bxuy8"]
+[ext_resource type="PackedScene" uid="uid://ceq63xnq61set" path="res://player/scenes/player.tscn" id="1_ai58r"]
+[ext_resource type="PackedScene" uid="uid://duj6hqcmry3w4" path="res://player/scenes/player_camera.tscn" id="2_6s660"]
+[ext_resource type="PackedScene" uid="uid://b5x6qq5bmpk5w" path="res://player/scenes/marker.tscn" id="4_bxuy8"]
+[ext_resource type="PackedScene" uid="uid://g01dqwyfxs8o" path="res://items/alchemy_jug/alchemy_jug.tscn" id="4_v82bu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_145bm"]
 
@@ -69,3 +70,9 @@ size = Vector3(3, 3, 7)
 [node name="marker" parent="." instance=ExtResource("4_bxuy8")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.25147, 0)
+
+[node name="alchemy_jug" parent="." instance=ExtResource("4_v82bu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1066, 0, 3.5698)
+
+[node name="alchemy_jug2" parent="." instance=ExtResource("4_v82bu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.80306, 0, 4.4188)
