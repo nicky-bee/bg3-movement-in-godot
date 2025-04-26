@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ceq63xnq61set"]
+[gd_scene load_steps=8 format=3 uid="uid://ceq63xnq61set"]
 
 [ext_resource type="Script" path="res://player/scripts/player.gd" id="1_fymjr"]
 [ext_resource type="Resource" uid="uid://t8atodc8hedw" path="res://player/resources/player_inventory.tres" id="2_d7qva"]
@@ -10,6 +10,8 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_r2mie"]
 radius = 3.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kpbjr"]
 
 [node name="player" type="CharacterBody3D"]
 collision_layer = 2
@@ -33,6 +35,14 @@ collision_mask = 8
 
 [node name="pickup_collision" type="CollisionShape3D" parent="pickup_radius"]
 shape = SubResource("SphereShape3D_r2mie")
+
+[node name="mouse_detector" type="Area3D" parent="." groups=["detector"]]
+collision_layer = 2
+collision_mask = 8
+
+[node name="detector_collision" type="CollisionShape3D" parent="mouse_detector"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+shape = SubResource("SphereShape3D_kpbjr")
 
 [node name="UI" type="Node" parent="."]
 

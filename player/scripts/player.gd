@@ -15,6 +15,8 @@ var pending_drop = null
 @onready var navigation_agent = $navigation_agent
 @onready var inventory_interface: Control = $UI/inventory_window
 @onready var pickup_radius: Area3D = $pickup_radius
+@onready var mouse_detector: Area3D = $mouse_detector
+
 
 func _ready():
 	world = get_parent()
@@ -40,7 +42,7 @@ func _input(event):
 				# Reset last grabbed index to prevent repeated drops
 				if inventory_interface.last_grabbed_index != -1:
 					inventory_interface.last_grabbed_index = -1
-		
+			
 			# Normal movement and pickup handling if no item is being dropped
 			elif intersect and !inventory_interface.grabbed_slot_data:
 				if intersect.collider.is_in_group("pickup"):
@@ -49,11 +51,17 @@ func _input(event):
 					mouse_pos = intersect.position
 					marker.global_position = mouse_pos
 					navigation_agent.set_target_position(mouse_pos)
+		
 				
 	if Input.is_action_just_pressed("inventory"):
 		toggle_inventory()
 
 func _physics_process(delta):
+	var intersect = get_mouse_intersect(get_viewport().get_mouse_position())
+	
+	if intersect:
+		# Move the Area3D to follow the mouse position in world space
+		mouse_detector.global_position = intersect.position
 	handle_movement()
 	handle_proximity_pickup()
 	handle_pending_drop()

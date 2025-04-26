@@ -28,3 +28,7 @@ offset_bottom = 50.0
 [node name="quantity_label" type="Label" parent="quantity_margin_container"]
 visible = false
 layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "1
+"

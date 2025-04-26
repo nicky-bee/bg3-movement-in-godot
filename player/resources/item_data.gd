@@ -1,6 +1,9 @@
 extends Resource
 class_name ItemData 
 
+# Functionality
+@export var usable: bool = false
+
 #Looks
 @export var name: String = ""   #item name
 @export_multiline var description: String = ""   #item description

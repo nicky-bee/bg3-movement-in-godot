@@ -33,10 +33,9 @@ offset_bottom = 1.0
 grow_horizontal = 0
 
 [node name="grabbed_slot" parent="." instance=ExtResource("4_xljko")]
-mouse_passthrough = true
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="close_requested" from="window" to="." method="_on_window_close_requested"]
 [connection signal="mouse_entered" from="window" to="." method="_on_inventory_mouse_entered"]
 [connection signal="mouse_exited" from="window" to="." method="_on_inventory_mouse_exited"]
-[connection signal="window_input" from="grabbed_slot" to="." method="_on_gui_input"]
+[connection signal="slot_clicked" from="grabbed_slot" to="grabbed_slot" method="_on_gui_input"]

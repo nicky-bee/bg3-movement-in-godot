@@ -71,36 +71,13 @@ func pick_up_slot_data(slot_data: SlotData) -> bool:
 func on_slot_clicked(index: int, button: int) -> void:
 	inventory_interact.emit(self, index, button)
 	
-func get_slot_mesh(index: int):
-	if slot_datas[index] != null:
-		return slot_datas[index].item_data.mesh
-		
-func get_slot_scale(index: int):
-	return slot_datas[index].item_data.scale
+func place_item_quantity(slot_data: SlotData, quantity: int) -> bool:
+	for index in slot_datas.size():
+		if not slot_datas[index]:
+			var new_slot_data = slot_data.duplicate() as SlotData
+			new_slot_data.quantity = quantity
+			slot_datas[index] = new_slot_data
+			inventory_updated.emit(self)
+			return true
 
-func get_item_type(index: int):
-	return slot_datas[index].item_data.item_type
-	
-func get_hold_position(index: int):
-	return slot_datas[index].item_data.weapon_hold
-	
-func item_data_type():
-	return slot_datas[0].item_data.ItemType
-	
-func weapon_hold_position():
-	return slot_datas[0].item_data.WeaponHold
-
-func get_item_heal(index: int):
-	return slot_datas[index].item_data.heal
-
-func get_slot_translation(index: int):
-	return slot_datas[index].item_data.translation
-	
-func get_slot_x(index: int):
-	return slot_datas[index].item_data.rotation_x
-	
-func get_slot_y(index: int):
-	return slot_datas[index].item_data.rotation_y
-	
-func get_slot_z(index: int):
-	return slot_datas[index].item_data.rotation_z
+	return false

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btq33rjxdnhna"
-path="res://.godot/imported/icon_alchemy_jug.png-9204d0e87c1b7786c3d8f5441d346d80.ctex"
+uid="uid://cv5mrysnr3v81"
+path="res://.godot/imported/icon_alchemy_jug.png-6e361614a7aaea1edd6575e38ef153d4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://items/alchemy_jug/icon_alchemy_jug.png"
-dest_files=["res://.godot/imported/icon_alchemy_jug.png-9204d0e87c1b7786c3d8f5441d346d80.ctex"]
+source_file="res://items/icons/icon_alchemy_jug.png"
+dest_files=["res://.godot/imported/icon_alchemy_jug.png-6e361614a7aaea1edd6575e38ef153d4.ctex"]
 
 [params]
 

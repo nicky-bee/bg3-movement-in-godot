@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://npf5j1n5mdke"]
 
 [ext_resource type="Script" path="res://player/resources/item_data.gd" id="1_fcd85"]
-[ext_resource type="Texture2D" uid="uid://btq33rjxdnhna" path="res://items/alchemy_jug/icon_alchemy_jug.png" id="1_rlgt2"]
+[ext_resource type="Texture2D" uid="uid://cv5mrysnr3v81" path="res://items/icons/icon_alchemy_jug.png" id="1_rlgt2"]
 
 [resource]
 script = ExtResource("1_fcd85")
 name = "Alchemy Jug"
 description = ""
 icon = ExtResource("1_rlgt2")
-stackable = false
-max_stacks = 1
+stackable = true
+max_stacks = 5
 sell_price = -1.0
 buy_price = -1.0

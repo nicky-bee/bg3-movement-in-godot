@@ -24,10 +24,19 @@ theme_override_constants/margin_bottom = 1
 layout_mode = 2
 
 [node name="quantity_margin_container" type="MarginContainer" parent="."]
+z_index = 5
+z_as_relative = false
 layout_mode = 2
 
 [node name="quantity_label" type="Label" parent="quantity_margin_container"]
 visible = false
+z_index = 5
+z_as_relative = false
+texture_filter = 1
 layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "1"
+horizontal_alignment = 2
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
