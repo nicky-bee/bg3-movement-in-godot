@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://ctvhk6bt7nnrs"]
+
+[ext_resource type="Texture2D" uid="uid://b38nnlcb6nsgd" path="res://Items/Icon/alchemy_jug_icon.png" id="1_6bcs2"]
+[ext_resource type="Script" path="res://Player/Resources/item_data.gd" id="1_ppxi3"]
+
+[resource]
+script = ExtResource("1_ppxi3")
+usable = false
+name = "Alchemy Jug"
+description = ""
+icon = ExtResource("1_6bcs2")
+stackable = true
+max_stacks = 5
+sell_price = 8.0
+buy_price = 10.0
