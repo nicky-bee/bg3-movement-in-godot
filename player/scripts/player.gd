@@ -135,6 +135,7 @@ func handle_pending_drop():
 				var placed_item = load(pending_drop["item_data"].item_location)
 				var instance = placed_item.instantiate()
 				world.add_child(instance)
+				instance.slot_data.quantity = pending_drop["item_data"].quantity
 				instance.global_position = global_position  # Start at the player
 
 				# Animate the item moving in an arc
