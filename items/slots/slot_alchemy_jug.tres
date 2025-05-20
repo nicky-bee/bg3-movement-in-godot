@@ -7,4 +7,4 @@
 script = ExtResource("2_klhro")
 item_data = ExtResource("1_ve2sh")
 item_location = "res://items/scenes/alchemy_jug.tscn"
-quantity = 3
+quantity = 1

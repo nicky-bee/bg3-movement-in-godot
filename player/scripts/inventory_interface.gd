@@ -8,7 +8,7 @@ var grabbed_slot_data: SlotData
 @onready var player_inventory: PanelContainer = $window/inventory
 @onready var grabbed_slot: Window = $grabbed_slot
 @onready var window: Window = $window
-@onready var item_menu: Control = $window/inventory/item_menu
+@onready var item_menu: Window = $window/inventory/item_menu
 
 @export var drag_margin: int = 10  # How much of the top is draggable
 
@@ -30,7 +30,8 @@ func set_player_inventory_data(inventory_data: InventoryData) -> void:
 
 func on_inventory_interact(inventory_data: InventoryData,
 index: int, button: int) -> void:
-	destroy_item_menu()
+	if item_menu_open:
+		destroy_item_menu()
 	match [grabbed_slot_data, button]:
 		[null, MOUSE_BUTTON_LEFT]:
 			grabbed_slot_data = inventory_data.grab_slot_data(index)
@@ -54,7 +55,7 @@ func update_grabbed_slot() -> void:
  
 func destroy_item_menu():
 	for child in window.get_children():
-		if child is Control and child.is_in_group("item_menu"):
+		if child is Window and child.is_in_group("item_menu"):
 			child.queue_free()
 	item_menu_open = false
 
@@ -62,7 +63,6 @@ func open_item_menu(index: SlotData):
 	destroy_item_menu()
 	item_menu_open = true
 	var menu = preload("res://player/scenes/item_menu.tscn").instantiate()
-	menu.position = window.get_viewport().get_mouse_position()
 	window.add_child(menu)
 	menu.set_slot_data(index)
 

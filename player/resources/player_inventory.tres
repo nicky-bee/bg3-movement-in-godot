@@ -1,9 +1,8 @@
-[gd_resource type="Resource" script_class="InventoryData" load_steps=4 format=3 uid="uid://t8atodc8hedw"]
+[gd_resource type="Resource" script_class="InventoryData" load_steps=3 format=3 uid="uid://t8atodc8hedw"]
 
 [ext_resource type="Script" path="res://player/resources/inventory_data.gd" id="1_jebtg"]
 [ext_resource type="Script" path="res://player/resources/slot_data.gd" id="2_4ajh0"]
-[ext_resource type="Resource" uid="uid://bp5q3f3x0as8m" path="res://items/slots/slot_alchemy_jug.tres" id="3_rdygh"]
 
 [resource]
 script = ExtResource("1_jebtg")
-slot_datas = Array[ExtResource("2_4ajh0")]([ExtResource("3_rdygh"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+slot_datas = Array[ExtResource("2_4ajh0")]([null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])

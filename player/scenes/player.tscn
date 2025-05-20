@@ -48,5 +48,7 @@ shape = SubResource("SphereShape3D_kpbjr")
 
 [node name="inventory_window" parent="UI" instance=ExtResource("3_jbmy2")]
 
+[node name="jump_trajectory" type="MeshInstance3D" parent="."]
+
 [connection signal="body_entered" from="pickup_radius" to="." method="_on_item_entered"]
 [connection signal="body_exited" from="pickup_radius" to="." method="_on_item_exited"]
