@@ -2,15 +2,16 @@
 
 [ext_resource type="Script" path="res://Player/Scripts/item_menu.gd" id="1_ayaca"]
 
-[node name="item_menu" type="Control" groups=["item_menu"]]
-z_index = 12
-z_as_relative = false
-layout_mode = 3
-anchors_preset = 0
-script = ExtResource("1_ayaca")
+[node name="item_menu" type="Window" groups=["item_menu"]]
+transparent_bg = true
+size = Vector2i(80, 70)
+unresizable = true
+borderless = true
+transparent = true
+script = ExtResource("1_k34p5")
 
 [node name="background" type="ColorRect" parent="."]
-layout_mode = 0
+z_index = 5
 offset_right = 80.0
 offset_bottom = 68.0
 color = Color(0.298039, 0.12549, 0, 1)
@@ -32,24 +33,32 @@ text = "Use"
 layout_mode = 2
 text = "Split"
 
-[node name="split_menu" type="ColorRect" parent="."]
+[node name="split_menu_window" type="Window" parent="."]
+transparent_bg = true
+size = Vector2i(339, 170)
 visible = false
-z_index = 15
-layout_mode = 1
+transient = true
+unresizable = true
+borderless = true
+always_on_top = true
+transparent = true
+
+[node name="split_menu" type="ColorRect" parent="split_menu_window"]
+z_index = 5
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -110.0
-offset_top = -50.0
-offset_right = 110.0
-offset_bottom = 50.0
+offset_left = -169.5
+offset_top = -85.0
+offset_right = 53.64
+offset_bottom = 17.46
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.458824, 0.258824, 0, 1)
 
-[node name="item_container" type="VBoxContainer" parent="split_menu"]
+[node name="item_container" type="VBoxContainer" parent="split_menu_window/split_menu"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -58,25 +67,28 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="explanation_label" type="Label" parent="split_menu/item_container"]
+[node name="explanation_label" type="Label" parent="split_menu_window/split_menu/item_container"]
+texture_filter = 1
 layout_mode = 2
 text = "Choose Splitting Quantity"
 horizontal_alignment = 1
 
-[node name="quantity_label" type="Label" parent="split_menu/item_container"]
+[node name="quantity_label" type="Label" parent="split_menu_window/split_menu/item_container"]
+texture_filter = 1
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="quantity_slider" type="HSlider" parent="split_menu/item_container"]
+[node name="quantity_slider" type="HSlider" parent="split_menu_window/split_menu/item_container"]
 layout_mode = 2
 min_value = 1.0
 value = 1.0
 
-[node name="split_confirm_button" type="Button" parent="split_menu/item_container"]
+[node name="split_confirm_button" type="Button" parent="split_menu_window/split_menu/item_container"]
+texture_filter = 1
 layout_mode = 2
 text = "Confirm"
 
 [connection signal="button_up" from="background/item_container/use_button" to="." method="_on_use_button_button_up"]
 [connection signal="button_up" from="background/item_container/split_button" to="." method="_on_split_button_button_up"]
-[connection signal="value_changed" from="split_menu/item_container/quantity_slider" to="." method="_on_quantity_slider_value_changed"]
-[connection signal="button_up" from="split_menu/item_container/split_confirm_button" to="." method="_on_split_confirm_button_button_up"]
+[connection signal="value_changed" from="split_menu_window/split_menu/item_container/quantity_slider" to="." method="_on_quantity_slider_value_changed"]
+[connection signal="button_up" from="split_menu_window/split_menu/item_container/split_confirm_button" to="." method="_on_split_confirm_button_button_up"]

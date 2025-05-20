@@ -1,10 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://duj6hqcmry3w4"]
 
-<<<<<<<< Updated upstream:player/scenes/player_camera.tscn
-[ext_resource type="Script" path="res://player/scripts/gravity.gd" id="1_fno66"]
-========
-[ext_resource type="Script" path="res://Player/Scripts/camera.gd" id="1_fno66"]
->>>>>>>> Stashed changes:Player/Scenes/player_camera.tscn
+[ext_resource type="Script" path="res://player/scripts/camera.gd" id="1_fno66"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xgd3o"]
 radius = 0.114227
