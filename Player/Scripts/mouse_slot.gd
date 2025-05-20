@@ -2,23 +2,28 @@ extends Window
 
 signal slot_clicked(index: int, button: int)
 
-@onready var icon: TextureRect = $icon_margin_container/icon
+@onready var texture_rect: TextureRect = $icon_margin_container/icon
 @onready var quantity_label: Label = $quantity_margin_container/quantity_label
 @onready var inventory_window: Control = $".."
 
 func _ready() -> void:
 	slot_clicked.connect(_on_gui_input)
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_RIGHT:
+			pass
+
 func set_slot_data(slot_data: SlotData) -> void:
 	var item_data = slot_data.item_data
-	icon.texture = item_data.icon
+	texture_rect.texture = item_data.icon
 	
 	if slot_data.quantity > 1:
-		quantity_label.text = str(slot_data.quantity)
+		quantity_label.text = "%s" % slot_data.quantity
 		quantity_label.show()
 	else:
 		quantity_label.hide()
-		
+
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton \
 	and (event.button_index == MOUSE_BUTTON_LEFT \

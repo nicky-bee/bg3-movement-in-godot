@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cumi1d556545g"]
+[gd_scene load_steps=2 format=3 uid="uid://cmc8qks4ivauj"]
 
-[ext_resource type="Script" path="res://Player/Scripts/inventory.gd" id="1_leq5p"]
+[ext_resource type="Script" path="res://player/scripts/inventory.gd" id="1_y44u1"]
 
 [node name="inventory" type="PanelContainer"]
 anchors_preset = 8
@@ -14,7 +14,7 @@ offset_right = -574.0
 offset_bottom = -322.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_leq5p")
+script = ExtResource("1_y44u1")
 
 [node name="margin_container" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -28,3 +28,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 columns = 7
+
+[connection signal="mouse_entered" from="." to="." method="_on_inventory_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_inventory_mouse_exited"]

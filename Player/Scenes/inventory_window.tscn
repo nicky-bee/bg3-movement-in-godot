@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://snjjhp8qrtyt"]
+[gd_scene load_steps=5 format=3 uid="uid://b30qasr0hn672"]
 
-[ext_resource type="PackedScene" uid="uid://cumi1d556545g" path="res://Player/Scenes/inventory.tscn" id="1_d6nia"]
-[ext_resource type="Script" path="res://Player/Scripts/inventory_window.gd" id="1_fkn6n"]
-[ext_resource type="Script" path="res://Player/Scripts/inventory_interface.gd" id="1_p6u4y"]
-[ext_resource type="PackedScene" uid="uid://dd57oaab58t2c" path="res://Player/Scenes/mouse_slot.tscn" id="2_1ldvp"]
+[ext_resource type="Script" path="res://player/scripts/inventory_interface.gd" id="1_xn0v1"]
+[ext_resource type="Script" path="res://player/scripts/inventory_window.gd" id="2_a6y6k"]
+[ext_resource type="PackedScene" uid="uid://cmc8qks4ivauj" path="res://player/scenes/inventory.tscn" id="2_caxy4"]
+[ext_resource type="PackedScene" uid="uid://cli3ac1ct7m0m" path="res://player/scenes/mouse_slot.tscn" id="4_xljko"]
 
 [node name="inventory_window" type="Control"]
 layout_mode = 3
@@ -13,16 +13,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-script = ExtResource("1_p6u4y")
+script = ExtResource("1_xn0v1")
 
 [node name="window" type="Window" parent="."]
 title = "Inventory"
-position = Vector2i(1000, 170)
+position = Vector2i(1011, 169)
 visible = false
 extend_to_title = true
-script = ExtResource("1_fkn6n")
+script = ExtResource("2_a6y6k")
 
-[node name="inventory" parent="window" instance=ExtResource("1_d6nia")]
+[node name="inventory" parent="window" instance=ExtResource("2_caxy4")]
 anchors_preset = 6
 anchor_left = 1.0
 anchor_right = 1.0
@@ -32,10 +32,11 @@ offset_right = 0.0
 offset_bottom = 1.0
 grow_horizontal = 0
 
-[node name="mouse_slot" parent="." instance=ExtResource("2_1ldvp")]
+[node name="grabbed_slot" parent="." instance=ExtResource("4_xljko")]
+mouse_passthrough = true
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="close_requested" from="window" to="." method="_on_window_close_requested"]
-[connection signal="mouse_entered" from="window" to="." method="_on_window_mouse_entered"]
-[connection signal="mouse_exited" from="window" to="." method="_on_window_mouse_exited"]
-[connection signal="window_input" from="mouse_slot" to="mouse_slot" method="_on_gui_input"]
+[connection signal="mouse_entered" from="window" to="." method="_on_inventory_mouse_entered"]
+[connection signal="mouse_exited" from="window" to="." method="_on_inventory_mouse_exited"]
+[connection signal="window_input" from="grabbed_slot" to="." method="_on_gui_input"]

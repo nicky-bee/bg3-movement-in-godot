@@ -16,29 +16,29 @@ func grab_slot_data(index: int) -> SlotData:
 	else:
 		return null
 		
-func display_slot_data(index):
+func display_slot_data(index: int) -> SlotData:
 	return slot_datas[index]
-		
+	
 func drop_slot_data(grabbed_slot_data: SlotData, index: int, on_inventory_ui: bool) -> SlotData:
 	if !on_inventory_ui:
-		return null
-		
+		return null  # Prevents repopulating the inventory when dropped outside
+
 	var slot_data = slot_datas[index]
 	var return_slot_data: SlotData
-	
+
 	if slot_data and slot_data.can_fully_merge_with(grabbed_slot_data):
 		slot_data.fully_merge_with(grabbed_slot_data)
 	else:
 		slot_datas[index] = grabbed_slot_data
 		return_slot_data = slot_data
-		
+
 	inventory_updated.emit(self)
 	return return_slot_data
-	
+
 func destroy_slot_data(index: int):
 	slot_datas[index] = null
 	inventory_updated.emit(self)
-	
+
 func drop_single_slot_data(grabbed_slot_data: SlotData, index: int) -> SlotData:
 	var slot_data = slot_datas[index]
 	
@@ -52,7 +52,7 @@ func drop_single_slot_data(grabbed_slot_data: SlotData, index: int) -> SlotData:
 		return grabbed_slot_data
 	else:
 		return null
-	
+
 func pick_up_slot_data(slot_data: SlotData) -> bool:
 	for index in slot_datas.size():
 		if slot_datas[index] and slot_datas[index].can_fully_merge_with(slot_data):
@@ -65,9 +65,9 @@ func pick_up_slot_data(slot_data: SlotData) -> bool:
 			slot_datas[index] = slot_data
 			inventory_updated.emit(self)
 			return true
-			
+
 	return false
-	
+
 func on_slot_clicked(index: int, button: int) -> void:
 	inventory_interact.emit(self, index, button)
 	
@@ -79,5 +79,5 @@ func place_item_quantity(slot_data: SlotData, quantity: int) -> bool:
 			slot_datas[index] = new_slot_data
 			inventory_updated.emit(self)
 			return true
-			
+
 	return false

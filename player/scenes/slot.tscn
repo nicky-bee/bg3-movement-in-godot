@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://ciy70upy4r7ko"]
+[gd_scene load_steps=2 format=3 uid="uid://blpwxkpiprefq"]
 
-[ext_resource type="Script" path="res://Player/Scripts/slot.gd" id="1_2axmf"]
+[ext_resource type="Script" path="res://player/scripts/slot.gd" id="1_85rar"]
 
 [node name="slot" type="PanelContainer"]
 custom_minimum_size = Vector2(45, 45)
@@ -11,7 +11,7 @@ offset_right = -1102.0
 offset_bottom = -598.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_2axmf")
+script = ExtResource("1_85rar")
 
 [node name="icon_margin_container" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -25,13 +25,18 @@ layout_mode = 2
 
 [node name="quantity_margin_container" type="MarginContainer" parent="."]
 z_index = 5
+z_as_relative = false
 layout_mode = 2
 
 [node name="quantity_label" type="Label" parent="quantity_margin_container"]
 visible = false
+z_index = 5
+z_as_relative = false
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "1"
+horizontal_alignment = 2
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

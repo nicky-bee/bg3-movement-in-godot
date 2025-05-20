@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b38nnlcb6nsgd"
-path.s3tc="res://.godot/imported/alchemy_jug_icon.png-781c35f998ed7ab60294acd710db4ba2.s3tc.ctex"
+path.s3tc="res://.godot/imported/alchemy_jug_icon.png-7cbdfe8babc5cbf0236e7189600f7bf8.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Items/Icon/alchemy_jug_icon.png"
-dest_files=["res://.godot/imported/alchemy_jug_icon.png-781c35f998ed7ab60294acd710db4ba2.s3tc.ctex"]
+source_file="res://items/Icon/alchemy_jug_icon.png"
+dest_files=["res://.godot/imported/alchemy_jug_icon.png-7cbdfe8babc5cbf0236e7189600f7bf8.s3tc.ctex"]
 
 [params]
 

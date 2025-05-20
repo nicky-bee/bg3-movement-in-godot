@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dd57oaab58t2c"]
+[gd_scene load_steps=2 format=3 uid="uid://cli3ac1ct7m0m"]
 
-[ext_resource type="Script" path="res://Player/Scripts/mouse_slot.gd" id="1_qd57e"]
+[ext_resource type="Script" path="res://player/scripts/mouse_slot.gd" id="1_xhbh0"]
 
 [node name="slot" type="Window"]
 transparent_bg = true
@@ -8,7 +8,7 @@ size = Vector2i(50, 50)
 borderless = true
 always_on_top = true
 transparent = true
-script = ExtResource("1_qd57e")
+script = ExtResource("1_xhbh0")
 
 [node name="icon_margin_container" type="MarginContainer" parent="."]
 offset_right = 50.0
@@ -22,7 +22,6 @@ theme_override_constants/margin_bottom = 1
 layout_mode = 2
 
 [node name="quantity_margin_container" type="MarginContainer" parent="."]
-z_index = 5
 offset_right = 50.0
 offset_bottom = 50.0
 
@@ -31,4 +30,5 @@ visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
-text = "1"
+text = "1
+"
