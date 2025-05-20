@@ -44,15 +44,5 @@ shape = SubResource("SphereShape3D_e8178")
 collision_layer = 2
 collision_mask = 8
 
-[node name="detector_collision" type="CollisionShape3D" parent="mouse_detector"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-shape = SubResource("SphereShape3D_kpbjr")
-
-[node name="UI" type="Node" parent="."]
-
-[node name="inventory_window" parent="UI" instance=ExtResource("3_jbmy2")]
-
-[node name="jump_trajectory" type="MeshInstance3D" parent="."]
-
-[connection signal="body_entered" from="pickup_radius" to="." method="_on_item_entered"]
-[connection signal="body_exited" from="pickup_radius" to="." method="_on_item_exited"]
+[node name="mouse_detector_collision" type="CollisionShape3D" parent="mouse_detector"]
+shape = SubResource("SphereShape3D_akj5h")

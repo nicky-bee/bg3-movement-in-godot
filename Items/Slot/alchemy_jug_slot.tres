@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SlotData" load_steps=3 format=3 uid="uid://bb4jteya3kkbj"]
+
+[ext_resource type="Script" path="res://Player/Resources/slot_data.gd" id="1_jqcu2"]
+[ext_resource type="Resource" uid="uid://ctvhk6bt7nnrs" path="res://Items/Data/alchemy_jug_data.tres" id="1_wlhrj"]
+
+[resource]
+script = ExtResource("1_jqcu2")
+item_data = ExtResource("1_wlhrj")
+item_location = "res://Items/Scenes/alchemy_jug.tscn"
+quantity = 1
